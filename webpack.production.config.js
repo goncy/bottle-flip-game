@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+var CopyWebpackPlugin = require('copy-webpack-plugin')
 
 // Phaser webpack config
 var phaserModule = path.join(__dirname, '/node_modules/phaser-ce/')
@@ -37,6 +38,11 @@ module.exports = {
       compress: {
         warnings: false
       }
+    }),
+    new CopyWebpackPlugin([
+      { from: './public/' }
+    ], {
+      ignore: ['**/.*']
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
